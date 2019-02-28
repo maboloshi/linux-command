@@ -9,7 +9,7 @@ before_script:
 
 script:
   - cd .deploy_git
-  - cp -f ../command/*.md
+  - cp -f ../command/*.md ./
   - git commit -a -m "Sync `command` to gist at $(date '+%Y-%m-%d %H:%M:%d %Z %z')."
   - git push https://$NAME:$GIST_TOKEN@gist.github.com/${GIST_ID}.git
 
