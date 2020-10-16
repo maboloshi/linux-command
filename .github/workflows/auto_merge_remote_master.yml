@@ -1,0 +1,23 @@
+name: Scheduled /Manual Merge Remote Action
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+    # scheduled for 00:00 every Monday
+  workflow_dispatch:
+    # trigger manually: Actions > All workflows > Scheduled /Manual Merge Remote Action > Run workflow
+
+jobs:
+  merge-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master                             # set the branch to merge to
+          fetch-depth: 0
+      - name: Merge Upstream
+        uses: exions/merge-upstream@v1
+        with:
+          upstream: jaywcjlove/linux-command      # set the upstream repo
+          upstream-branch: master                 # set the upstream branch to merge from
+          branch: master                          # set the branch to merge to
